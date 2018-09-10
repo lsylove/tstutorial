@@ -1,0 +1,104 @@
+ Topic: 200
+  Relevant Docs:    2544
+   Rel Estimate:    17566
+   Rel Accuracy:    14.5%
+  F1:               4.2%
+   F1 Estimate:     50.8%
+   F1 Accuracy:     8.2%
+  Best cutoff:      3591
+   Cutoff Estimate: 19145
+   Cutoff Accuracy: 18.8%
+  Hypothetical F1:  8.9%
+  ROC AUC        :  82.7%
+
+ Topic: 201
+  Relevant Docs:    1886
+   Rel Estimate:    4783
+   Rel Accuracy:    39.4%
+  F1:               6.4%
+   F1 Estimate:     48.6%
+   F1 Accuracy:     13.1%
+  Best cutoff:      1089
+   Cutoff Estimate: 6134
+   Cutoff Accuracy: 17.8%
+  Hypothetical F1:  11.6%
+  ROC AUC        :  90.4%
+
+ Topic: 202
+  Relevant Docs:    6312
+   Rel Estimate:    23150
+   Rel Accuracy:    27.3%
+  F1:               18.4%
+   F1 Estimate:     77.7%
+   F1 Accuracy:     23.6%
+  Best cutoff:      2484
+   Cutoff Estimate: 20646
+   Cutoff Accuracy: 12.0%
+  Hypothetical F1:  32.1%
+  ROC AUC        :  81.0%
+
+ Topic: 203
+  Relevant Docs:    3125
+   Rel Estimate:    2849
+   Rel Accuracy:    91.2%
+  F1:               17.6%
+   F1 Estimate:     41.5%
+   F1 Accuracy:     42.4%
+  Best cutoff:      4904
+   Cutoff Estimate: 2621
+   Cutoff Accuracy: 53.4%
+  Hypothetical F1:  24.2%
+  ROC AUC        :  92.9%
+
+ Topic: 204
+  Relevant Docs:    6362
+   Rel Estimate:    2582
+   Rel Accuracy:    40.6%
+  F1:               3.3%
+   F1 Estimate:     21.6%
+   F1 Accuracy:     15.3%
+  Best cutoff:      83388
+   Cutoff Estimate: 4712
+   Cutoff Accuracy: 5.7%
+  Hypothetical F1:  8.2%
+  ROC AUC        :  86.8%
+
+ Topic: 205
+  Relevant Docs:    67938
+   Rel Estimate:    19874
+   Rel Accuracy:    29.3%
+  F1:               24.8%
+   F1 Estimate:     67.6%
+   F1 Accuracy:     36.6%
+  Best cutoff:      74531
+   Cutoff Estimate: 20472
+   Cutoff Accuracy: 27.5%
+  Hypothetical F1:  51.4%
+  ROC AUC        :  87.3%
+
+ Topic: 206
+  Relevant Docs:    866
+   Rel Estimate:    16725
+   Rel Accuracy:    5.2%
+  F1:               3.5%
+   F1 Estimate:     74.8%
+   F1 Accuracy:     4.7%
+  Best cutoff:      196
+   Cutoff Estimate: 17210
+   Cutoff Accuracy: 1.1%
+  Hypothetical F1:  7.6%
+  ROC AUC        :  91.3%
+
+ Topic: 207
+  Relevant Docs:    20929
+   Rel Estimate:    26734
+   Rel Accuracy:    78.3%
+  F1:               10.5%
+   F1 Estimate:     66.5%
+   F1 Accuracy:     15.9%
+  Best cutoff:      8935
+   Cutoff Estimate: 29019
+   Cutoff Accuracy: 30.8%
+  Hypothetical F1:  16.7%
+  ROC AUC        :  60.3%
+

@@ -1,0 +1,31 @@
+Date: Wed, 25 Apr 2001 08:57:00 -0700 (PDT)
+From: Phillip K Allen
+To: Ned Higgins
+Cc: Mike Grigsby
+Subject: Re: Unocal WAHA Storage
+X-SDOC: 950966
+X-ZLID: zl-edrm-enron-v2-allen-p-3704.eml
+
+Ned,
+
+Regarding the Waha storage, the west desk does not have a strong need for 
+this storage but we are always willing to show a bid based on the current 
+summer/winter spreads and cycling value.  The following assumptions were made 
+to establish our bid:  5% daily injection capacity, 10% daily withdrawal 
+capacity, 1% fuel (injection only), 0.01/MMBtu variable injection and 
+withdrawal fees.  Also an undiscounted  June 01 to January 02 spread of $0.60 
+existed at the time of this bid.
+
+Bid for a 1 year storage contract beginning June 01 based on above 
+assumptions:  $0.05/ MMBtu/Month ($0.60/Year).  Demand charges only.
+
+I am not sure if this is exactly what you need or not.  Please call or email 
+with comments.
+
+Phillip Allen
+
+
+
+***********
+EDRM Enron Email Data Set has been produced in EML, PST and NSF format by ZL Technologies, Inc. This Data Set is licensed under a Creative Commons Attribution 3.0 United States License <http://creativecommons.org/licenses/by/3.0/us/> . To provide attribution, please cite to "ZL Technologies, Inc. (http://www.zlti.com)."
+***********

@@ -1,0 +1,159 @@
+   	Stagecoach Apartments	
+Rent Worksheet	
+ 	Week ended March 16, 2001	
+Adult	Child	
+Unit	Name	Bal. Fwd.	Rent Due	Late Fees	Util. Over	Total	Date Pd.	Amt. Paid	Fwd. Bal.	Notes	Br/Ba	Occup	Occup	Workplace(Position)	Deposit	Move In	Lease Exp	Rent	Frequency	Lease	
+1	David Jennings	110	110	110	1/1	1	A-1 Plumbing	175	1/8/2001	7/8/2001	110	weekly	long form	
+2	vacant(3/9)	 	 	eff	1	1	Casa De La Rosa Restraunt	150	2/6/2001	8/6/2001	95	weekly	long form	
+3	Martin Garcia	130	130	130	2/1	4	Lightning Metals	175	12/8/2000	6/8/2001	130	weekly	long form	
+4	Doris Copeland	 	 	 	monthly 330	1/1	1	retired	100	11/1/1990	4/30/1991	330	monthly	no copy of lease	
+5	Raudel Gonzalez	130	130	130	1/1	3	T.I.C Job #519	175	9/18/2000	3/18/2001	130	weekly	long form	
+6	Helen Merriwether	 	260	260	260	260 bi-weekly due 3/2 & 3/16	2/1	2	3	none	1/1/1997	MTM	260	biweekly	long form	
+7	LUCY	 	Mgr	 	 	1/1	1	3	Stagecoach	none	6/8/2000	12/8/2001	110	weekly	long form	
+8	Ernest Leos Sr	 	130	130	130	2/1	2	2	Centex Waste	175	12/28/2000	6/28/2001	130	weekly	long form	
+9	Stephanie Z.	 	 	440 monthly due 3/23 	1/1	1	2	Pride PHC Service(Provider)	175	2/17/2001	8/17/2001	220	biweekly	long form	
+10	Mario Martinez	 	110	110	110	2/2	Horowitz Salvage	94	110	weekly	no copy of lease	
+11	Kim Merriwether	40	240	280	280	$240 biweekly due 3/2 & 3/16	1/1	1	2	Kirkwood Manor	175	10/8/2000	4/8/2001	240	biweekly	long form	
+12	 vacant	 	 	 	eff	95	weekly	long form	
+13	Mary Ussery	40	140	180	180	2/1	1	2	Flextronics(lightning metals)	210	12/15/00	6/15/2001	140	weekly	long form	
+14	Mary Merriwether	190	190	190	190 bi-weekly due  3/2 & 3/16	1/1	2	McDonalds	none	7/16/1997	1/16/1998	190	biweekly	short form	
+15	Tomas Cisneros	190	190	190	190 bi-weekly due  3/2 & 3/16. 	1/1	1	Antex	200	190	biweekly	short form	
+16	Armando Lopez	 	110	110	110	1/1	2	Tyson	175	1/7/2001	7/7/2001	110	weekly	long form	
+17	Damien Trevino	80	130	210	210	will pay rest on Friday. Pd $15 on deposit	 	10/6/2000	
+18	Santos Plancarte	110	110	220	220	1/1	3	Tyson	175	5/5/2000	11/5/2000	110	weekly	long form	
+19	Chris Phelps	 	130	130	130	130.00 transferred to 319 from #17	2/1	2	Flores Fencing	175	3/9/2001	9/9/2001	130	weekly	long form	
+20a	vacant2/23	 	 	Moved out owing $285.  	eff	1	Motorola in Seguin.	150	12/21/2000	6/21/2000	95	weekly	long form	
+20b	Robert Hollbrook	175	95	270	270	Missed rent 2/9&2/16	eff	1	Disability	150	1/9/2001	7/9/2001	95	weekly	
+21	Neil Moreno	 	240	240	240	$240 biweekly due 3/2 & 3/16	2/1	2	1	Wal-Mart distribution	175	11/15/2000	5/20/2001	240	biweekly	long form	
+22	Jose Luis Chavez	 	130	130	130	1/1	3	175	10/5/2000	4/5/2001	130	weekly	long form	
+23	Bridgett Lamkin	 	 	 	$480/month. 4/8	1/1	1	2	Annie Lee Foundation	190	2/8/2001	8/8/2001	480	Monthly	long form	
+24	Wade	 	Maint	 	 	2/2	3	Stagecoach	none	1/8/1999	120	weekly	none	
+ 	 	 	
+25	Cecilla Friant	Cecilia Friant	118.5	110	228.5	228.5	1/1	2	3	Motorola in Seguin.	190	1/4/2001	7/4/2001	110	weekly	long form	
+26	Amanda Molina	 	 	 	520.00 monthly 3/30	2/1	3	Flextronics(lightning metals)	200	1/30/2001	7/30/2001	520	monthly	long form	
+27	Al Rodriquez	120	120	240	240	monthly 480or 120/wk. owe 100 for pet	2/1	2	2	Montech	175	12/8/2000	6/8/2001	480	monthly	long form	
+28	Ruben Cano	260	260	260	Biweekly 260 due 3/16&3/30	2/1/	3	American Precast	175	9/1/2000	3/1/2001	260	biweekly	long form	
+29	 Maria Placencia	 	 	May go monthly $460. Pd 230 on 3/9	2/1	3	2	Tyson	200	2/2/1999	7/2/1999	115	weekly	long form	
+30	Mai Tram	 	 	 	monthly 400 due 3/20	1/1	2	Tyson	150	1/22/1998	7/22/1998	400	monthly	short form	
+31	Richard Guerra	 	125	125	125	1/1	1	1	Simpson Race Products	200	9/24/1999	3/24/2000	125	weekly	long form	
+32	Ben Deleon	 	 	 	Monthly 440 due 4/1	1/1	2	Flextronics(lightning metals)	190	1/3/2001	4/3/2001	440	monthly	long form	
+33	Denver Emery	130	130	130	Pd 95 of 190 on dep	 1/1	1	Timber Tech	47.5	3/2/2001	9/2/2001	130	weekly	long form	
+34	Ruthie McClure	120	120	120	2/1	1	Tyson	50	2/8/1991	7/31/1991	120	weekly	long form	
+35	vacant (3/9)	 	 	2/1	
+36	Serjio Alarcon	 	125	125	125	2/1	4	1	Tyson	200	1/24/2000	7/24/2000	125	weekly	long form	
+37	Carmen Torrez	130	130	260	260	2/1	2	1	Mission Valley Textiles	190	3/6/2001	9/6/2001	130	weekly	long form	
+38	Sal Cumplido	 	520	520	520	monthly 520 3/15.  	2/1	2	3	Zachary Construction	200	11/1/2000	5/1/2000	520	monthly	long form	
+39	Marco A Fuentes	 	110	110	110	1/1	2	2	R.J.Moehrig	175	1/3/2001	7/3/2001	110	weekly	long form	
+40	Jose Briones	 	 	 	 	600/monthly 4/1. Pd $75of $300 dep	3/1	2	3	D isability(S.S.I.)	2/7/2001	8/7/2001	600	monthly	longform	
+41	vacant 2/16	 	 	Monthly $550. 	2/1	550	monthly	
+42	Armstrong P.	 	120	120	120	2/1	2	2	Jud's Store	200	Sep-98	Feb-99	120	weekly	
+43	Palermo Chuck	 	120	120	120	2/1	1	1	Tyson	200	2/5/1999	7/5/1999	120	weekly	long form	
+44	NhanNguyn	 	 	 	monthly 650	2/1	4	Seguin Nails (Owner)	400	7/31/2000	4/31/2001	650	monthly	long form	
+Sub-total	813.5	4565	 	 	5378.5	 	5378.5	
+ 	
+Other Fees & Deposits	
+ 	
+Total	813.50	4565.00	0.00	0.00	5378.50	0.00	5378.50	
+ 	
+  	
+Deposit per bank	
+Inc.	Unit	Br/Ba	Occupant	# Occup.	Workplace	Deposit	Lease Exp.	Move-in Date	 Week/Month	Rent	Last WT	Appliances	A/C	Carpet	V. Floor	Paint	Notes	Est.$$	
+1	Ritchie	1	Tyson	150	4/9/2000	10/8/1999	          Week	100	11/9/1999	Frig. 9-14-99	250	
+2	Vacant	175	          Week	110	11/15/1999	7/30/1999	7/29/1999	225.12	
+3	Armendariz	4	Light. Metals	150	4/21/2000	10/21/1999	          Week	110	11/9/1999	7/14/1999	7/12/1999	746.5	
+XXX	4	Copeland	1	Retired	100	          MTM	11/1/1990	         Month	330	11/9/1999	
+5	Tirado	1	Home Care	175	8/15/2000	2/15/2000	           Week	100	12/31/1999	12/21/1999	16	
+6	Merriwether	5	SSI	 	          MTM	3/20/1997	       Bi-week	220	11/9/2000	
+7	Richards	1	Manager	175	12/3/1998	             N/A	110	11/15/2000	
+8	Longoria	4	Seg. Auto	200	          MTM	5/21/1999	          Month	480	11/15/1999	
+XXX	9	Vacant	175	           Week	100	2/7/2000	10/26/1999	10/26/1999	10/26/1999	218.38	
+10	Martinez	2	Horowitz Sal.	50	          MTM	6/10/1994	           Week	110	
+11	Clark	2	Gold. Corral	150	4/15/2000	10/15/1999	           Week	100	11/9/2000	10/13/1999	79	
+12	Benefield	1	Tyson	75	6/10/2000	12/10/1999	           Week	100	12/28/1999	Frig. 9-14-99	11/30/1999	282	
+XXX	13	Vacant	250	          Month	480	12/28/1999	9/30/1999	9/30/1999	9/30/1999	
+14	Merriwether	1	Tyson	 	          MTM	7/16/1997	           Week	95	12/28/1999	
+15	Cisneros	2	Hwy. 	200	          MTM	           7/6/?	        Bi-week	190	12/28/1999	Frig. 9-8-99	282	
+XXX	16	Lee	1	Tyson	175	8/18/2000	2/18/2000	           Week	100	2/15/2000	2/14/2000	2/16/2000	206.39	
+XXX	17	Mitchell	2	Wal-Mart	175	8/18/2000	2/18/2000	           Week	100	2/17/2000	
+XXX	18	Wood	2	WalMart Dist.	150	          MTM	7/3/1999	           Week	100	
+XXX	19	Vacant	250	          Month	460	12/28/1999	x	125.72	
+20	Perez	2	Tyson	150	          MTM	4/18/1998	           Week	105	12/28/1999	
+XXX	21	Mims	3	Marble Masters	150	          MTM	12/1/1998	           Week	105	12/28/1999	
+XXX	22	Tijerina,M	4	Huck-Jacobsen	175	10/17/2000	3/17/2000	           Week	100	3/8/2000	3/8/2000	62.82	
+XXX	23	Arrutia	3	Tyson	175	7/24/2000	1/24/2000	           Week	100	12/28/1999	11/17/1999	11/17/1999	11/17/1999	795.98	
+XXX	24	O'Neill	1	Maint.	200	1/4/1998	             N/A	120	12/28/1999	
+25	Perez,D.	2	Best Tires	175	7/21/2000	1/21/2000	           Week	100	12/28/1999	1/7/2000	1/7/2000	1/7/2000	302.10	
+XXX	26	Ramirez	4	Toni's Auto 	200	          MTM	4/16/1999	           Week	115	 	
+XXX	27	Vacant	250	           Week	125	3/20/2000	3/22/2000	3/16/2000	3/14/2000	1023.15	
+XXX	28	Ramos	3	Tyson	200	5/5/2000	11/5/1999	           Week	115	
+XXX	29	Placencia	3	Tyson	200	          MTM	2/2/1999	           Week	115	Frig. 9-14-99	250	
+30	Tram	1	Tyson	150	          MTM	1/22/1998	          Month	400	
+XXX	31	Phillips	1	Tyson	150	3/24/2000	9/24/1999	          Month	420	
+32	Nieto	2	Tyson	150	          MTM	10/23/1998	           Week	100	
+XXX	33	Tijerina,R	2	Light. Metals	150	3/27/2000	9/27/1999	          Month	420	
+34	McClure	 	Tyson	50	          MTM	2/8/1991	           Week	110	12/28/1999	
+35	Laxson	5	Schlittrbaun	200	          MTM	11/20/1998	           Week	110	Frig. 9-14-99	250	
+XXX	36	Gonzalez	3	Sally' s Sup.	250	3/27/2000	9/27/1999	           Week	125	11/24/1999	10/29/1999	560	
+XXX	37	San Miguel	4	Tyson	200	          MTM	7/30/1999	           Week	115	
+XXX	38	Jasso	3	Light. Metals	200	          MTM	2/11/2000	           Week	130	2/11/2000	Frig./Stove 2-16	2/2/2000	1/27/2000	2/10/2000	Transferred from #17	520.00	
+39	Navarro,II	3	Alamo Group	75	6/7/2000	12/7/1999	           Week	105	12/7/1999	3/15/2000	602.33	
+XXX	40	Wilson	4	West. Auto	200	4/5/2000	10/5/1999	           Week	130	9/30/1999	
+XXX	41	Pardo	2	SMI	400	6/23/2000	12/4/1999	          Month	550	12/28/1999	12/29/1999	12/15/1999	12/15/1999	12/15/1999	1770.98	
+42	Armstrong	4	SMI	200	          MTM	9/4/1998	           Week	120	
+XXX	43	Palermo	3	Tyson	200	          MTM	2/5/1999	           Week	120	12/28/1999	
+44	Rivers	5	Tyson	200	          MTM	6/4/1996	        Bi-week	270	12/28/1999	
+Total	7425	
+Manager	
+Maint.	
+Net	
+Unit	Out. Bal	Weekly	Bi-Weekly	Monthly	
+1	100	
+2	95	
+3	110	
+4	330	
+5	100	
+6	110	
+7	Mgr	
+8	480	
+9	100	
+10	110	
+11	100	
+12	100	
+13	480	
+14	95	
+15	190	
+16	100	
+17	100	
+18	100	
+19	100	
+20	105	
+21	105	
+22	100	
+23	100	
+24	Maint	
+25	100	
+26	115	
+27	115	
+28	115	
+29	115	
+30	400	
+31	420	
+32	100	
+33	420	
+34	110	
+35	110	
+36	125	
+37	115	
+38	130	
+39	105	
+40	130	
+41	550	
+42	120	
+43	120	
+44	270	
+ Expected Income	3555	460	3080	
+ Periods/Year	52	26	12	
+   Total	233780	184860	11960	36960	
+Actual Received	
+   1st Dep	
+   2nd Dep	
