@@ -127,21 +127,21 @@ class WordCacheInitializer(PreprocessorTemplate):
                             self.marker.add(v)
                             self.wb.put(v.encode(), [0.0] + self.model.wv[v])
                             self.cached += 1
-                        elif re.match("^\d\d/\d\d/\d{2,4}$", v):
+                        elif re.match("^\\d\\d/\\d\\d/\\d{2,4}$", v):
                             self.marker.add(v)
                             f = v.split("/")
                             vector = np.array([0.1, float(int(f[0])), float(int(f[1])), float(int(f[2]))] + [0.0] * 297)
                             vector = vector.astype(np.float32)
                             self.wb.put(v.encode(), vector)
                             self.date += 1
-                        elif re.match("^\d\d:\d\d$", v):
+                        elif re.match("^\\d\\d:\\d\\d$", v):
                             self.marker.add(v)
                             f = v.split(":")
                             vector = np.array([0.2, 0.0, float(int(f[0])), float(int(f[1]))] + [0.0] * 297)
                             vector = vector.astype(np.float32)
                             self.wb.put(v.encode(), vector)
                             self.time += 1
-                        elif re.match("^\d\d:\d\d:\d\d$", v):
+                        elif re.match("^\\d\\d:\\d\\d:\\d\\d$", v):
                             self.marker.add(v)
                             f = v.split(":")
                             vector = np.array([0.2, float(int(f[0])), float(int(f[1])), float(int(f[2]))] + [0.0] * 297)

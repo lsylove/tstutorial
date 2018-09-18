@@ -40,12 +40,12 @@ def process_email(raw_data):
             count -= 1
         elif len(data) <= i + 2:
             data2.append(data[i])
-        elif re.match("^\d?$", data[i]) and re.match("^[a-z]{3}$", data[i + 1]) and re.match("^\d{4}$", data[i + 2]):
+        elif re.match("^\\d?$", data[i]) and re.match("^[a-z]{3}$", data[i + 1]) and re.match("^\\d{4}$", data[i + 2]):
             another_date_str = data[i] + " " + data[i + 1] + " " + data[i + 2]
             another_date_str = datetime.strptime(another_date_str, "%d %b %Y").strftime("%m/%d/%Y")
             data2.append(another_date_str)
             count = 2
-        elif re.match("^[a-z]{3,}$", data[i]) and re.match("^\d{2}$", data[i + 1]) and re.match("^\d{4}$", data[i + 2]):
+        elif re.match("^[a-z]{3,}$", data[i]) and re.match("^\\d{2}$", data[i + 1]) and re.match("^\\d{4}$", data[i + 2]):
             try:
                 another_date_str = data[i] + " " + data[i + 1] + " " + data[i + 2]
                 another_date_str = datetime.strptime(another_date_str, "%B %d %Y").strftime("%m/%d/%Y")
