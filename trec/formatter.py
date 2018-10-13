@@ -14,7 +14,7 @@ def format_object_array(lst: List[Mapping[str, Any]]) -> List[str]:
     lst = sorted(lst, key=lambda obj: obj["doc_id"])
     estimate_list = [[obj["doc_id"], obj["estimate"], -1] for obj in lst]
     estimate_list = sorted(estimate_list, key=lambda tp: -tp[1])
-    for (idx, tpl) in enumerate(estimate_list):
-        tpl[2] = idx + 1
+    for (i, tpl) in enumerate(estimate_list):
+        tpl[2] = i + 1
     estimate_list = sorted(estimate_list, key=lambda tp: tp[0])
     return [format_object(tpl[0], tpl[1][2]) for tpl in zip(lst, estimate_list)]
