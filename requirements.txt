@@ -2,3 +2,5 @@ numpy
 scipy
 tensorflow
 tensorflow-gpu
+plyvel
+gensim
