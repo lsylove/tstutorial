@@ -1,5 +1,5 @@
 from definitions import ROOT_DIR
-from data_process import generate_key, process_email
+from old.data_process import generate_key, process_email
 import responsiveness_logic
 from os import listdir
 from os.path import isdir, isfile, join
