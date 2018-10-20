@@ -82,8 +82,8 @@ class Reader(PlyvelWrapper[bytes, np.ndarray]):
                 return np.frombuffer(raw_vec, dtype=np.float32)
         return None
 
-    def lookup_embedding(self, keys: List[str]) -> np.ndarray:
-        ret = np.zeros(shape=(1000, 301), dtype=np.float32)
+    def lookup_embedding(self, keys: List[str], max_len: int=1000) -> np.ndarray:
+        ret = np.zeros(shape=(max_len, 301), dtype=np.float32)
         cur = 0
         for i, k in enumerate(keys):
             if len(keys) > i + 1 and self.__try_find(k, keys[i + 1]) is not None:
