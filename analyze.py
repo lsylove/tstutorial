@@ -1,6 +1,8 @@
 import db.doc_to_dir
 import trec.seed
+import directories.general
 import sys
+import re
 from shutil import copyfile
 from definitions import *
 from typing import *
@@ -43,6 +45,49 @@ def export_seeds(req_id: int, relevance: int=1, export_dir: str=None) -> None:
             copyfile(doc_dir, dst)
 
 
+def attachment_types(root_dir: str=EDRM_DIR) -> None:
+    """
+    Identifies existent attachment types throughout the dataset.
+    Args: at <any_thing>
+    :param root_dir: optional root directory to start recursive search (default root)
+    :return: None
+    """
+    types = set()
+    reference = {
+        "total": 0
+    }
+    symbol = "EDRM Enron Email Data Set has been produced in EML, PST and NSF format by ZL Technologies, Inc."
+
+    def identify(doc_file: str, file_dir: str) -> None:
+        reference["total"] += 1
+        if reference["total"] % 2000 == 0:
+            print(reference["total"], "Files Processed")
+        if re.match("^.*\d+\.txt$", doc_file):
+            return
+        with open(file_dir, mode="r", encoding="utf-8") as file:
+            foot_check = False
+            for line in file:
+                if not foot_check and not line.startswith(symbol):
+                    continue
+                foot_check = True
+                if line.startswith("Attachment:"):
+                    try:
+                        spl = line.split("=")
+                        v = spl[len(spl) - 1].strip()
+                        if v not in types:
+                            print("Type:", v)
+                            print("Type From:", doc_file)
+                            types.add(v)
+                    except IndexError:
+                        print("Exception Line:", line.strip())
+                        print("Exception File:", doc_file)
+    directories.general.for_each_file(root_dir, identify)
+    print("Total # of Files:", reference["total"])
+    print("Identified Types:")
+    for typ in types:
+        print(typ)
+
+
 def main(argv: List[str]) -> None:
     if len(argv) < 3:
         raise ValueError("Too few arguments")
@@ -53,6 +98,8 @@ def main(argv: List[str]) -> None:
             export_seeds(int(argv[2]))
         else:
             export_seeds(int(argv[2]), int(argv[3]))
+    elif argv[1] == "at":
+        attachment_types()
     else:
         raise ValueError("Invalid argument #0")
 
