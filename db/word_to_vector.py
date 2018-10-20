@@ -83,12 +83,15 @@ class Reader(PlyvelWrapper[bytes, np.ndarray]):
         return None
 
     def lookup_embedding(self, keys: List[str]) -> np.ndarray:
-        ret = np.ndarray(shape=(None, 301), dtype=np.float32)
+        ret = np.zeros(shape=(1000, 301), dtype=np.float32)
+        cur = 0
         for i, k in enumerate(keys):
-            if len(keys) > i and self.__try_find(k, keys[i + 1]):
-                np.append(ret, [self.__try_find(k, keys[i + 1])], axis=0)
-            elif self.__try_find(k):
-                np.append(ret, [self.__try_find(k)], axis=0)
+            if len(keys) > i + 1 and self.__try_find(k, keys[i + 1]) is not None:
+                ret[cur] = self.__try_find(k, keys[i + 1])
+                cur += 1
+            elif self.__try_find(k) is not None:
+                ret[cur] = self.__try_find(k)
+                cur += 1
         return ret
 
 
