@@ -95,7 +95,7 @@ class EmbeddingMethodTC(unittest.TestCase):
     def tearDown(self):
         db.word_to_vector.destroy(db_dir=TEST_DIR)
 
-    def test_writer_and_reader(self):
+    def test_lookup_embedding(self):
         model = get_model_cache()
         lines = "Congressional hearing Washington Bureau Chief Peter Cook new new new new york"\
             .lower().split(" ")

@@ -1,6 +1,5 @@
 from definitions import ROOT_DIR
 from old.data_process import generate_key, process_email
-import responsiveness_logic
 from os import listdir
 from os.path import isdir, isfile, join
 import re
@@ -11,6 +10,11 @@ from gensim.models import KeyedVectors
 
 def empty(_, __):
     pass
+
+
+def responsive(data_str):
+    return "contract" in data_str and "offer" in data_str
+
 
 
 class DirIterator:
@@ -67,7 +71,7 @@ class SimulationAnswerPreprocessor(PreprocessorTemplate):
                 id_desc = file.readline()
                 key = generate_key(id_desc)
                 file_str = file.read().replace("\n", "")
-                if responsiveness_logic.responsive(file_str):
+                if responsive(file_str):
                     print(count, "is responsive")
                     self.total_resp += 1
                     self.wb.put(key, b"T")
