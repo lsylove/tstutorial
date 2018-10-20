@@ -254,6 +254,9 @@ data/orig/
 # LevelDB cache
 data/db/
 
+# Temporary files for analysis
+data/temp/
+
 # Other large files that are rejected by GitHub
 data/assessment/qrels.t10legallearn
 data/trec/doc-uniqdoc.csv

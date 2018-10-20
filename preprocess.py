@@ -5,11 +5,11 @@ from definitions import *
 from typing import *
 
 
-def construct_word2vec():
+def construct_word2vec() -> None:
     pass
 
 
-def construct_doc_to_dir():
+def construct_doc_to_dir() -> None:
     reference = {
         "total": 0
     }
@@ -20,12 +20,12 @@ def construct_doc_to_dir():
             writer.add(".".join(doc_file), file_dir)
             reference["total"] += 1
             if reference["total"] % 10000 == 0:
-                print(reference["total"], "files are processed")
+                print(reference["total"], "Files Processed")
         directories.general.for_each_file(EDRM_DIR, append_kv)
         print("Total # of Files:", reference["total"])
 
 
-def main(argv: List[str]):
+def main(argv: List[str]) -> None:
     if len(argv) < 2:
         raise ValueError("Too few arguments")
     if argv[1] == "dd":

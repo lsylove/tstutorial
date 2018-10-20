@@ -24,8 +24,8 @@ class Reader(PlyvelWrapper[bytes, bytes]):
         return self.read(key.encode()).decode("utf-8")
 
     def open(self, key: str) -> object:
-        return open(self.find(key), mode="r")
+        return open(self.find(key), mode="r", encoding="UTF8")
 
 
-def destroy(db_dir: str = DIR) -> None:
+def destroy(db_dir: str=DIR) -> None:
     destroy_db(db_dir)
