@@ -27,7 +27,7 @@ class ComposeTC(unittest.TestCase):
             self.assertAlmostEqual(elt, 0.)
 
 
-@unittest.skip
+# @unittest.skip
 class WriterTC(unittest.TestCase):
     def tearDown(self):
         db.word_to_vector.destroy()
@@ -39,14 +39,15 @@ class WriterTC(unittest.TestCase):
         lines = "new york hot dog enumeration lakjkljr pencil 31/08/2018 15:04 hot new york chicken 15:04".split(" ")
         with db.word_to_vector.Writer(model) as writer:
             writer.add(lines)
-            self.assertEqual(len(writer.markerA), 9)
+            self.assertEqual(len(writer.markerA), 8)
             self.assertEqual(len(writer.markerB), 2)
             self.assertEqual(len(writer.markerC), 1)
-            self.assertEqual(writer.statA, 13)
+            self.assertEqual(writer.statA, 10)
             self.assertEqual(writer.statB, 3)
             self.assertEqual(writer.statC, 1)
 
 
+# @unittest.skip
 class ReaderTC(unittest.TestCase):
     def tearDown(self):
         db.word_to_vector.destroy()
@@ -66,17 +67,17 @@ class ReaderTC(unittest.TestCase):
         with db.word_to_vector.Reader() as reader:
             print("**Congressional**")
             vector = reader.find("Congressional")
-            self.assertEqual(len(vector), 1204)
+            self.assertEqual(len(vector), 301)
             for elt in vector[slice(20)]:
                 print(elt)
             print("**House**")
             vector = reader.find("House")
-            self.assertEqual(len(vector), 1204)
+            self.assertEqual(len(vector), 301)
             for elt in vector[slice(20)]:
                 print(elt)
             print("**31/08/2018**")
             vector = reader.find("31/08/2018")
-            self.assertEqual(len(vector), 1204)
+            self.assertEqual(len(vector), 301)
             for elt in vector[slice(20)]:
                 print(elt)
 

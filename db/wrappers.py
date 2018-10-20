@@ -23,5 +23,5 @@ class PlyvelWrapper(Generic[K, V]):
     def write(self, key: K, value: V) -> None:
         self.wb.put(key, value)
 
-    def read(self, key: K) -> V:
+    def read(self, key: K) -> Optional[V]:
         return self.db.get(key)
