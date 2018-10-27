@@ -1,12 +1,12 @@
 import db.doc_to_dir
+import db.attachment_type
+import db.word_to_vector
 import directories.general
+import documents.attachment
+import trec.docids
 import sys
 from definitions import *
 from typing import *
-
-
-def construct_word2vec() -> None:
-    pass
 
 
 def construct_doc_to_dir() -> None:
@@ -25,14 +25,75 @@ def construct_doc_to_dir() -> None:
         print("Total # of Files:", reference["total"])
 
 
+def construct_attachment_type() -> None:
+    cached = trec.docids.Cached()
+    doc_ids = trec.docids.doc_ids()
+    doc_ids = {cached.find(did) for did in doc_ids}
+    reference = {
+        "total": 0,
+        "attachments": 0,
+        "fwa": 0,
+        "fake": 0
+    }
+    prev_marker = [False]
+    with db.attachment_type.Writer() as writer:
+        def append_kv(doc_file, file_dir):
+            doc_id = directories.general.doc_file_to_doc_id(doc_file)
+            reference["total"] += 1
+            if reference["total"] % 10000 == 0:
+                print(reference["total"], "Files Processed")
+            if documents.attachment.is_attachment(doc_id):
+                prev_marker[0] = True
+                return
+            elif not prev_marker[0]:
+                return
+            prev_marker[0] = False
+            reference["fwa"] += 1
+            with open(file_dir, encoding="utf-8") as file:
+                types = documents.attachment.parse_attachment_types(file)
+                for i, v in enumerate(types):
+                    attachment_id = ".".join([doc_id, str(i + 1)])
+                    if attachment_id in doc_ids:
+                        writer.add(attachment_id, v)
+                        reference["attachments"] += 1
+                    else:
+                        reference["fake"] += 1
+        directories.general.for_each_file(EDRM_DIR, append_kv)
+        print("Total # of Files:", reference["total"])
+        print("Total # of Files with Attachments:", reference["fwa"])
+        print("Total # of Attachments:", reference["attachments"])
+        print("Total # of Invalid Attachments:", reference["fake"])
+
+
+def construct_word2vec() -> None:
+    pass
+
+
+def destroy_doc_to_dir() -> None:
+    db.doc_to_dir.destroy()
+
+
+def destroy_attachment_type() -> None:
+    db.attachment_type.destroy()
+
+
+def destroy_word2vec() -> None:
+    db.word_to_vector.destroy()
+
+
 def main(argv: List[str]) -> None:
     if len(argv) < 2:
         raise ValueError("Too few arguments")
-    if argv[1] == "dd":
-        construct_doc_to_dir()
-    elif argv[1] == "wv":
-        construct_word2vec()
-    else:
+    try:
+        {
+            "wv": construct_word2vec,
+            "dd": construct_doc_to_dir,
+            "at": construct_attachment_type,
+            "xwv": destroy_word2vec,
+            "xdd": destroy_doc_to_dir,
+            "xat": destroy_attachment_type
+        }[argv[1]]()
+    except KeyError:
         raise ValueError("Invalid argument #0")
 
 
