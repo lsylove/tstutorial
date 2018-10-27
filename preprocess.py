@@ -6,6 +6,8 @@ import documents.attachment
 import documents.message
 import trec.docids
 import sys
+import multiprocessing
+import queue
 from definitions import *
 from typing import *
 
@@ -109,6 +111,65 @@ def construct_word2vec(max_len: int) -> None:
             print("Total # of Cached Entries not within Model (Non-Unique): ", writer.statC)
 
 
+def __dispatch(root_dir, q, v, lock):
+    inner_ref = {
+        "total": 0
+    }
+
+    def append_text(doc_file, file_dir):
+        doc_id = directories.general.doc_file_to_doc_id(doc_file)
+        inner_ref["total"] += 1
+        with open(file_dir, "r", encoding="utf-8") as file:
+            if documents.attachment.is_attachment(doc_id):
+                text = documents.attachment.process(file)
+            else:
+                text = documents.message.process(file)
+        q.put(text)
+    directories.general.for_each_file(root_dir, append_text)
+    with lock:
+        v.value += inner_ref["total"]
+    print(v.value, "Files Processed")
+
+
+def construct_word2vec_concurrent(max_len: int) -> None:
+    if max_len > 685592:
+        max_len = 685592
+    with multiprocessing.Pool(processes=os.cpu_count() - 2) as pool:
+        m = multiprocessing.Manager()
+        q = m.Queue()
+        v = m.Value("i", 0)
+        lock = m.Lock()
+
+        model = db.word_to_vector.default_model()
+        folders = [os.path.join(EDRM_DIR, p) for p in os.listdir(EDRM_DIR)]
+        for p in folders:
+            try:
+                pool.apply_async(__dispatch, (p, q, v, lock)).get(timeout=0.001)
+            except multiprocessing.TimeoutError:
+                pass
+        with db.word_to_vector.Writer(model) as writer:
+            while v.value < max_len:
+                try:
+                    next_text = q.get(timeout=1)
+                    writer.add(next_text)
+                except queue.Empty:
+                    print("...waiting for a queue to fill up")
+            pool.terminate()
+            while True:
+                try:
+                    next_text = q.get(timeout=1)
+                    writer.add(next_text)
+                except queue.Empty:
+                    break
+            print("Total # of Files:", v.value)
+            print("Total # of Cached Entries from Model: ", len(writer.markerA))
+            print("Total # of Cached Datetime Entries: ", len(writer.markerB))
+            print("Total # of Cached Entries not within Model: ", len(writer.markerC))
+            print("Total # of Cached Entries from Model (Non-Unique): ", writer.statA)
+            print("Total # of Cached Datetime Entries (Non-Unique): ", writer.statB)
+            print("Total # of Cached Entries not within Model (Non-Unique): ", writer.statC)
+
+
 def destroy_doc_to_dir(_: int) -> None:
     db.doc_to_dir.destroy()
 
@@ -127,6 +188,7 @@ def main(argv: List[str]) -> None:
     try:
         {
             "wv": construct_word2vec,
+            "wvc": construct_word2vec_concurrent,
             "dd": construct_doc_to_dir,
             "at": construct_attachment_type,
             "xwv": destroy_word2vec,
