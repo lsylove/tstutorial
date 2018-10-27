@@ -3,12 +3,12 @@ import re
 from itertools import count
 from datetime import datetime
 from typing import *
-from .attachment import SYMBOL
 
 
 DT_PLACEHOLDER_PROTO = "__dt__placeholder__#"
 DT_PLACEHOLDER_HEAD = DT_PLACEHOLDER_PROTO.replace("#", "h")
 
+SYMBOL = "EDRM Enron Email Data Set has been produced in EML, PST and NSF format by ZL Technologies, Inc."
 FOOTER = "***********\n" + SYMBOL
 
 
@@ -38,7 +38,7 @@ def drop_tags(message: str) -> str:
     length = len(message)
     match = re.search(r"<[^><]+>", message)
     while match:
-        assert length > (match.end() - match.start()) * 20
+        # assert length > (match.end() - match.start()) * 20
         message = message[:match.start()] + message[match.end():]
         match = re.search(r"<[^><]+>", message)
     return message
@@ -72,6 +72,10 @@ def recover_datetime(text: List[str], dt: Mapping[str, List[str]]) -> List[str]:
 def lemmatize(text: List[str]) -> List[str]:
     global lz
     return [str(min(lz.lemmatize(w), lz.lemmatize(w, pos="v"), key=len)) for w in text]
+
+
+def drop_weirdos(text: List[str]) -> List[str]:
+    return [w for w in text if len(w) > 2 and not w.startswith("'") and not w.count("#") > 4 and not w.count("_") > 4]
 
 
 sw = set(nltk.corpus.stopwords.words("english"))

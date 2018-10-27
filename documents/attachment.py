@@ -1,7 +1,6 @@
 import re
+import documents.general
 from typing import *
-
-SYMBOL = "EDRM Enron Email Data Set has been produced in EML, PST and NSF format by ZL Technologies, Inc."
 
 
 def is_attachment(doc_id: str) -> bool:
@@ -23,10 +22,22 @@ def parse_attachment_types(message: Iterable[str]) -> List[str]:
     ret = []
     foot_check = False
     for line in message:
-        if not foot_check and not line.startswith(SYMBOL):
+        if not foot_check and not line.startswith(documents.general.SYMBOL):
             continue
         foot_check = True
         if line.startswith("Attachment:"):
             attachment_type = parse_attachment_type(line)
             ret.append(attachment_type)
     return ret
+
+
+def process(message: Iterable[str]) -> List[str]:
+    long_message = "".join(message)
+    long_message = documents.general.drop_tags(long_message)
+    text = documents.general.simplify(long_message)
+    text = documents.general.drop_stopwords(text)
+    text = documents.general.drop_url(text)
+    text = documents.general.remove_period(text)
+    text = documents.general.lemmatize(text)
+    text = documents.general.drop_weirdos(text)
+    return text

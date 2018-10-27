@@ -1,6 +1,8 @@
 import unittest
-from definitions import EDRM_DIR
-from .context import documents, directories
+import random
+import os
+from definitions import EDRM_DIR, TEMP_DIR
+from .context import documents, directories, trec, db
 
 
 class TC(unittest.TestCase):
@@ -23,6 +25,27 @@ class TC(unittest.TestCase):
             "application/msexcell", "application/msword", "application/pdf", "application/mspowerpoint",
             "application/octet-stream", "application/rtf", "image/gif", "image/jpeg", "image/bmp"
         })
+
+    def test_process(self):
+        export_dir = os.path.join(TEMP_DIR, "test_doc_attachments")
+        if not os.path.exists(export_dir):
+            os.makedirs(export_dir)
+        cached = trec.docids.Cached()
+        doc_ids = trec.docids.doc_ids()
+        with db.doc_to_dir.Reader() as reader:
+            for n in range(20):
+                next_doc = random.choice(doc_ids)
+                next_doc = cached.find(next_doc)
+                if not documents.attachment.is_attachment(next_doc):
+                    continue
+                with reader.open(next_doc) as file:
+                    lst = documents.attachment.process(file)
+                self.assertIsNotNone(lst)
+                file_dir = os.path.join(export_dir, str(n))
+                with open(file_dir, mode="w", encoding="utf-8") as file:
+                    file.write(next_doc + "\n")
+                    for token in lst:
+                        file.write(token + "\n")
 
 
 if __name__ == "__main__":
