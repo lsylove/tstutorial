@@ -99,6 +99,7 @@ Just so you had the latest matrices; although some of you directly received"""))
             text = documents.general.drop_stopwords(text)
             text = documents.general.drop_url(text)
             text = documents.general.remove_period(text)
+            text = documents.general.drop_weirdos(text)
             text = documents.general.recover_datetime(text, {k: v})
             text = documents.general.lemmatize(text)
             for token in text:

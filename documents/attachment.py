@@ -38,6 +38,6 @@ def process(message: Iterable[str]) -> List[str]:
     text = documents.general.drop_stopwords(text)
     text = documents.general.drop_url(text)
     text = documents.general.remove_period(text)
-    text = documents.general.lemmatize(text)
     text = documents.general.drop_weirdos(text)
+    text = documents.general.lemmatize(text)
     return text
