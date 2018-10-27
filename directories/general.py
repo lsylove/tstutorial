@@ -21,3 +21,9 @@ def for_each_file(root_dir: str, func: Callable[[str, str], Any], recursive: boo
             func(p, sub)
         elif path.isdir(sub) and recursive:
             for_each_file(sub, func)
+
+
+def doc_file_to_doc_id(doc_file: str) -> str:
+    tokens = doc_file.split(".")
+    del tokens[-1]
+    return ".".join(tokens)

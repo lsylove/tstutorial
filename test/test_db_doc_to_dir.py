@@ -13,9 +13,8 @@ class TC(unittest.TestCase):
         root_dir = directories.general.compose_dir(EDRM_DIR, "Jones", "T", 3)
         with db.doc_to_dir.Writer(db_dir=TEST_DIR) as writer:
             def append_kv(doc_file, file_dir):
-                doc_file = doc_file.split(".")
-                del doc_file[-1]
-                writer.add(".".join(doc_file), file_dir)
+                doc_id = directories.general.doc_file_to_doc_id(doc_file)
+                writer.add(doc_id, file_dir)
             directories.general.for_each_file(root_dir, append_kv)
         with db.doc_to_dir.Reader(db_dir=TEST_DIR) as reader:
             doc_dir = reader.find("3.895108.GWNQE50LK05TT0ZDOYGNC2AYEZHC4LRXA")

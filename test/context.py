@@ -8,5 +8,7 @@ import trec.formatter
 import trec.seed
 import db.word_to_vector
 import db.doc_to_dir
+import db.attachment_type
 import directories.general
 import directories.author
+import documents.attachment
