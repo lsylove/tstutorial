@@ -1,4 +1,6 @@
 import db.doc_to_dir
+import db.attachment_type
+import documents.attachment
 import trec.seed
 import directories.general
 import sys
@@ -88,6 +90,35 @@ def attachment_types(root_dir: str=EDRM_DIR) -> None:
         print(typ)
 
 
+def identify_seed_type(req_id: int) -> None:
+    """
+    Identifies attachment types for seeded documents.
+    :param req_id: request id for seeds to be analyzed
+    :return: None
+    """
+    seeds = trec.seed.seeds(req_id)
+    res1 = set()
+    res2 = set()
+    with db.attachment_type.Reader() as reader:
+        for obj in seeds:
+            doc_id = obj["doc_id"]
+            if documents.attachment.is_attachment(doc_id):
+                try:
+                    attachment_type = reader.find(doc_id)
+                    if obj["relevance"] == 1:
+                        res1.add(attachment_type)
+                    else:
+                        res2.add(attachment_type)
+                except AttributeError:
+                    print(doc_id)
+    print("Attachment Types for Relevant Documents: ")
+    for res in res1:
+        print(res)
+    print("Attachment Types for Non-Relevant Documents: ")
+    for res in res2:
+        print(res)
+
+
 def main(argv: List[str]) -> None:
     if len(argv) < 3:
         raise ValueError("Too few arguments")
@@ -100,6 +131,8 @@ def main(argv: List[str]) -> None:
             export_seeds(int(argv[2]), int(argv[3]))
     elif argv[1] == "at":
         attachment_types()
+    elif argv[1] == "is":
+        identify_seed_type(int(argv[2]))
     else:
         raise ValueError("Invalid argument #0")
 
