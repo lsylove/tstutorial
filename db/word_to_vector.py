@@ -98,12 +98,18 @@ class Reader(PlyvelWrapper[bytes, np.ndarray]):
 def compose_datetime_vector(line: str) -> Optional[np.ndarray]:
     if re.match("^\d\d/\d\d/\d{2,4}$", line):
         date = datetime.strptime(line, "%d/%m/%Y")
-        degree = date.timestamp() / 2524608000 - 0.5
+        try:
+            degree = date.timestamp() / 1893456000 - 0.5
+        except OSError:
+            degree = 0
         vector = np.array([0.1, degree] + [0.] * 299)
         return vector.astype(np.float32)
     elif re.match("^\d\d-\d\d-\d{2,4}$", line):
         date = datetime.strptime(line, "%d-%m-%Y")
-        degree = date.timestamp() / 2524608000 - 0.5
+        try:
+            degree = date.timestamp() / 1893456000 - 0.5
+        except OSError:
+            degree = 0
         vector = np.array([0.1, degree] + [0.] * 299)
         return vector.astype(np.float32)
     elif re.match("^\d\d:\d\d$", line) or re.match("^\d\d:\d\d:\d\d$", line):

@@ -3,6 +3,7 @@ import db.attachment_type
 import db.word_to_vector
 import directories.general
 import documents.attachment
+import documents.message
 import trec.docids
 import sys
 from definitions import *
@@ -78,7 +79,34 @@ def construct_attachment_type(max_len: int) -> None:
 
 
 def construct_word2vec(max_len: int) -> None:
-    pass
+    reference = {
+        "total": 0
+    }
+    model = db.word_to_vector.default_model()
+    with db.word_to_vector.Writer(model) as writer:
+        def append_kv(doc_file, file_dir):
+            doc_id = directories.general.doc_file_to_doc_id(doc_file)
+            reference["total"] += 1
+            if reference["total"] % 2000 == 0:
+                print(reference["total"], "Files Processed")
+                if reference["total"] >= max_len:
+                    raise MaxLenReached
+            with open(file_dir, "r", encoding="utf-8") as file:
+                if documents.attachment.is_attachment(doc_id):
+                    text = documents.attachment.process(file)
+                else:
+                    text = documents.message.process(file)
+            writer.add(text)
+        try:
+            directories.general.for_each_file(EDRM_DIR, append_kv)
+        finally:
+            print("Total # of Files:", reference["total"])
+            print("Total # of Cached Entries from Model: ", len(writer.markerA))
+            print("Total # of Cached Datetime Entries: ", len(writer.markerB))
+            print("Total # of Cached Entries not within Model: ", len(writer.markerC))
+            print("Total # of Cached Entries from Model (Non-Unique): ", writer.statA)
+            print("Total # of Cached Datetime Entries (Non-Unique): ", writer.statB)
+            print("Total # of Cached Entries not within Model (Non-Unique): ", writer.statC)
 
 
 def destroy_doc_to_dir(_: int) -> None:
