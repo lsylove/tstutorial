@@ -32,20 +32,25 @@ class TC(unittest.TestCase):
             os.makedirs(export_dir)
         cached = trec.docids.Cached()
         doc_ids = trec.docids.doc_ids()
-        with db.doc_to_dir.Reader() as reader:
-            for n in range(20):
-                next_doc = random.choice(doc_ids)
-                next_doc = cached.find(next_doc)
-                if not documents.attachment.is_attachment(next_doc):
-                    continue
-                with reader.open(next_doc) as file:
-                    lst = documents.attachment.process(file)
-                self.assertIsNotNone(lst)
-                file_dir = os.path.join(export_dir, str(n))
-                with open(file_dir, mode="w", encoding="utf-8") as file:
-                    file.write(next_doc + "\n")
-                    for token in lst:
-                        file.write(token + "\n")
+        with db.doc_to_dir.Reader() as reader_dir:
+            with db.attachment_type.Reader() as reader_attach:
+                for n in range(20):
+                    doc_id = random.choice(doc_ids)
+                    doc_id = cached.find(doc_id)
+                    if not documents.attachment.is_attachment(doc_id):
+                        continue
+                    with reader_dir.open(doc_id) as file:
+                        lst = documents.attachment.process(file)
+                    self.assertIsNotNone(lst)
+                    attachment_type = reader_attach.find(doc_id)
+                    if attachment_type == "application/msexcell":
+                        seen = set()
+                        lst = [w for w in lst if not (w in seen or seen.add(w))]
+                    file_dir = os.path.join(export_dir, str(n))
+                    with open(file_dir, mode="w", encoding="utf-8") as file:
+                        file.write(doc_id + "\n")
+                        for token in lst:
+                            file.write(token + "\n")
 
 
 if __name__ == "__main__":
