@@ -9,7 +9,11 @@ from definitions import *
 from typing import *
 
 
-def construct_doc_to_dir() -> None:
+class MaxLenReached(Exception):
+    pass
+
+
+def construct_doc_to_dir(max_len: int) -> None:
     reference = {
         "total": 0
     }
@@ -21,11 +25,15 @@ def construct_doc_to_dir() -> None:
             reference["total"] += 1
             if reference["total"] % 10000 == 0:
                 print(reference["total"], "Files Processed")
-        directories.general.for_each_file(EDRM_DIR, append_kv)
-        print("Total # of Files:", reference["total"])
+                if reference["total"] >= max_len:
+                    raise MaxLenReached
+        try:
+            directories.general.for_each_file(EDRM_DIR, append_kv)
+        finally:
+            print("Total # of Files:", reference["total"])
 
 
-def construct_attachment_type() -> None:
+def construct_attachment_type(max_len: int) -> None:
     cached = trec.docids.Cached()
     doc_ids = trec.docids.doc_ids()
     doc_ids = {cached.find(did) for did in doc_ids}
@@ -42,6 +50,8 @@ def construct_attachment_type() -> None:
             reference["total"] += 1
             if reference["total"] % 10000 == 0:
                 print(reference["total"], "Files Processed")
+                if reference["total"] >= max_len:
+                    raise MaxLenReached
             if documents.attachment.is_attachment(doc_id):
                 prev_marker[0] = True
                 return
@@ -58,26 +68,28 @@ def construct_attachment_type() -> None:
                         reference["attachments"] += 1
                     else:
                         reference["fake"] += 1
-        directories.general.for_each_file(EDRM_DIR, append_kv)
-        print("Total # of Files:", reference["total"])
-        print("Total # of Files with Attachments:", reference["fwa"])
-        print("Total # of Attachments:", reference["attachments"])
-        print("Total # of Invalid Attachments:", reference["fake"])
+        try:
+            directories.general.for_each_file(EDRM_DIR, append_kv)
+        finally:
+            print("Total # of Files:", reference["total"])
+            print("Total # of Files with Attachments:", reference["fwa"])
+            print("Total # of Attachments:", reference["attachments"])
+            print("Total # of Invalid Attachments:", reference["fake"])
 
 
-def construct_word2vec() -> None:
+def construct_word2vec(max_len: int) -> None:
     pass
 
 
-def destroy_doc_to_dir() -> None:
+def destroy_doc_to_dir(_: int) -> None:
     db.doc_to_dir.destroy()
 
 
-def destroy_attachment_type() -> None:
+def destroy_attachment_type(_: int) -> None:
     db.attachment_type.destroy()
 
 
-def destroy_word2vec() -> None:
+def destroy_word2vec(_: int) -> None:
     db.word_to_vector.destroy()
 
 
@@ -92,9 +104,13 @@ def main(argv: List[str]) -> None:
             "xwv": destroy_word2vec,
             "xdd": destroy_doc_to_dir,
             "xat": destroy_attachment_type
-        }[argv[1]]()
+        }[argv[1]](int(argv[2]) if len(argv) > 2 else sys.maxsize)
     except KeyError:
         raise ValueError("Invalid argument #0")
+    except ValueError:
+        raise ValueError("Invalid argument #1")
+    except MaxLenReached:
+        pass
 
 
 if __name__ == "__main__":
