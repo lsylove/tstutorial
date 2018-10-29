@@ -128,12 +128,13 @@ def __dispatch(root_dir, q, v, lock):
     directories.general.for_each_file(root_dir, append_text)
     with lock:
         v.value += inner_ref["total"]
-    print(v.value, "Files Processed")
+        value = v.value
+    print(value, "Files Processed")
 
 
 def construct_word2vec_concurrent(max_len: int) -> None:
-    if max_len > 685592:
-        max_len = 685592
+    if max_len > 680000:
+        max_len = 680000
     with multiprocessing.Pool(processes=os.cpu_count() - 2) as pool:
         m = multiprocessing.Manager()
         q = m.Queue()
@@ -148,10 +149,13 @@ def construct_word2vec_concurrent(max_len: int) -> None:
             except multiprocessing.TimeoutError:
                 pass
         with db.word_to_vector.Writer(model) as writer:
-            while v.value < max_len:
+            value = 0
+            while value < max_len:
                 try:
                     next_text = q.get(timeout=1)
                     writer.add(next_text)
+                    with lock:
+                        value = v.value
                 except queue.Empty:
                     print("...waiting for a queue to fill up")
             pool.terminate()
