@@ -2,6 +2,8 @@ import db.doc_to_dir
 import db.attachment_type
 import documents.attachment
 import trec.seed
+import trec.formatter
+import trec.docids
 import directories.general
 import sys
 import re
@@ -119,6 +121,26 @@ def identify_seed_type(req_id: int) -> None:
         print(res)
 
 
+def mock_submission() -> None:
+    """
+    Creates mock submission file
+    :return: None
+    """
+    cached = trec.docids.Cached()
+    doc_ids = trec.docids.doc_ids()
+    doc_ids = sorted([cached.find(doc_id) for doc_id in doc_ids])
+    with open(os.path.join(TEMP_DIR, "mock.txt"), "w", encoding="utf-8") as file:
+        for req_id in range(200, 201):
+            lst = [{
+                "req_id": req_id,
+                "doc_id": doc_id,
+                "estimate": 0
+            } for doc_id in doc_ids]
+            lst = trec.formatter.format_object_array(lst)
+            line = "\n".join(lst)
+            file.write(line + "\n")
+
+
 def main(argv: List[str]) -> None:
     if len(argv) < 3:
         raise ValueError("Too few arguments")
@@ -133,6 +155,8 @@ def main(argv: List[str]) -> None:
         attachment_types()
     elif argv[1] == "is":
         identify_seed_type(int(argv[2]))
+    elif argv[1] == "ms":
+        mock_submission()
     else:
         raise ValueError("Invalid argument #0")
 

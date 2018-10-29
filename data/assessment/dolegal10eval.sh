@@ -15,7 +15,7 @@
 gcc -O2 -o /tmp/calc1 calc1.c -lm
 gcc -O2 -o /tmp/calc2 calc2.c -lm
 export B=`echo $2 | sed -e 's/.gz//'`
-(zcat $B.gz || cat $B) | dos2unix | sed -e 's/	/ /g' -e 's/  */ /g' -e 's/ Q0 /:/' | sort > /tmp/pre
+(zcat $B.gz || cat $B) | sed -e 's/	/ /g' -e 's/  */ /g' -e 's/ Q0 /:/' | sort > /tmp/pre
 join /tmp/pre $1 | sed -e 's/:/ /' | sort -k1,1 -k3,3n -k2,2 > /tmp/joined
 /tmp/calc1 < /tmp/joined > $B.table
 /tmp/calc2 < /tmp/joined > /tmp/summary
