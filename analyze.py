@@ -1,6 +1,9 @@
 import db.doc_to_dir
 import db.attachment_type
+import db.word_to_vector
+import db.attachment_type
 import documents.attachment
+import documents.message
 import trec.seed
 import trec.formatter
 import trec.docids
@@ -141,6 +144,42 @@ def mock_submission() -> None:
             file.write(line + "\n")
 
 
+def check_longest_data(req_id: int) -> None:
+    """
+    check longest data among seed documents for req_id. also prints individual data
+    :param req_id: request id for seeds to be analyzed
+    :return: None
+    """
+    ref = [0]
+    with db.word_to_vector.Reader() as reader_w2v:
+        with db.doc_to_dir.Reader() as reader_d2d:
+            with db.attachment_type.Reader() as reader_at:
+                def vectorize(doc_id):
+                    ref[0] += 1
+                    if ref[0] % 20 == 0:
+                        print("So far,", ref[0], "documents processed")
+                    with reader_d2d.open(doc_id) as file:
+                        if documents.attachment.is_attachment(doc_id):
+                            text = documents.attachment.process(file)
+                            try:
+                                attachment_type = reader_at.find(doc_id)
+                                if attachment_type == "application/msexcell":
+                                    seen = set()
+                                    text = [w for w in text if not (w in seen or seen.add(w))]
+                            except AttributeError:
+                                pass
+                        else:
+                            text = documents.message.process(file)
+                    ret = reader_w2v.lookup_embedding(text)
+                    print(doc_id, ret.shape)
+                    return ret
+                cached = trec.seed.Cached()
+                lst = cached.seeds(req_id)
+                longest = max(((vectorize(obj["doc_id"]).shape[0], obj["doc_id"]) for obj in lst),
+                              key=lambda tup: tup[0])
+                print("Longest seed for", req_id, "is", longest)
+
+
 def main(argv: List[str]) -> None:
     if len(argv) < 3:
         raise ValueError("Too few arguments")
@@ -157,6 +196,8 @@ def main(argv: List[str]) -> None:
         identify_seed_type(int(argv[2]))
     elif argv[1] == "ms":
         mock_submission()
+    elif argv[1] == "cl":
+        check_longest_data(int(argv[2]))
     else:
         raise ValueError("Invalid argument #0")
 

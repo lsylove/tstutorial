@@ -105,7 +105,7 @@ class EmbeddingMethodTC(unittest.TestCase):
             self.assertEqual(writer.statA, 12)  # ???
         with db.word_to_vector.Reader(db_dir=TEST_DIR) as reader:
             sample = reader.lookup_embedding(lines)
-            self.assertEqual(sample.shape, (1000, 301))
+            self.assertEqual(sample.shape, (12, 301))
             vector = reader.find("new")
             for f1, f2 in zip(squeeze(sample[7]), vector):
                 self.assertAlmostEqual(f1, f2)
