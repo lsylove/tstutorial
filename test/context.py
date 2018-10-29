@@ -14,3 +14,4 @@ import directories.author
 import documents.attachment
 import documents.general
 import documents.message
+import core.batch
