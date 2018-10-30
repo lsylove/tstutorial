@@ -16,3 +16,4 @@ import documents.general
 import documents.message
 import core.batch
 import core.trec_batch
+import core.model
