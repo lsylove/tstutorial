@@ -54,7 +54,7 @@ class TC(tf.test.TestCase):
                 yield self.mock_embedding(did), rel
 
         dataset = core.batch.create_dataset(gen, tf.TensorShape([None, 8]))
-        dataset = core.batch.bucket_batch_dataset(dataset, 2, [1, 10, 20, 50, 100, 200, 500])
+        dataset = core.batch.bucket_batch_fixed_size(dataset, 2, [1, 10, 20, 50, 100, 200, 500])
         batch = dataset.make_one_shot_iterator().get_next()
 
         with self.test_session() as sess:

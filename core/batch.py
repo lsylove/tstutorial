@@ -16,9 +16,13 @@ def split_dataset(dataset: tf.data.Dataset, left_size: int, buffer_size: int=100
     return dataset.take(left_size), dataset.skip(left_size)
 
 
-def bucket_batch_dataset(dataset: tf.data.Dataset, batch_size: int, boundaries: List[int]) -> tf.data.Dataset:
-    batch_sizes = [batch_size] * (len(boundaries) + 1)
+def bucket_batch_dataset(dataset: tf.data.Dataset, batches: List[int], boundaries: List[int]) -> tf.data.Dataset:
     op = tf.contrib.data.bucket_by_sequence_length(element_length_func=lambda x, y: tf.shape(x)[0],
-                                                   bucket_batch_sizes=batch_sizes,
+                                                   bucket_batch_sizes=batches,
                                                    bucket_boundaries=boundaries)
     return dataset.apply(op)
+
+
+def bucket_batch_fixed_size(dataset: tf.data.Dataset, batch_size: int, boundaries: List[int]) -> tf.data.Dataset:
+    batches = [batch_size] * (len(boundaries) + 1)
+    return bucket_batch_dataset(dataset, batches, boundaries)
