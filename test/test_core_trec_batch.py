@@ -72,11 +72,6 @@ class TC(tf.test.TestCase):
         with db.word_to_vector.Reader() as reader_w2v:
             with db.doc_to_dir.Reader() as reader_d2d:
                 with db.attachment_type.Reader() as reader_at:
-                    cached = trec.seed.Cached()
-                    lst = cached.seeds(204)
-
-                    # lst2 = [(vectorize(obj["doc_id"]), float(obj["relevance"])) for obj in lst]
-
                     executor = concurrent.futures.ThreadPoolExecutor(max_workers=6)
                     lock = threading.Lock()
                     q = []
@@ -102,6 +97,11 @@ class TC(tf.test.TestCase):
                                 print("So far,", ref[0], "documents processed")
                             q.append((vec, rel))
 
+                    cached = trec.seed.Cached()
+                    lst = cached.seeds(204)
+
+                    # lst2 = [(vectorize(obj["doc_id"]), float(obj["relevance"])) for obj in lst]
+
                     for obj in lst:
                         executor.submit(__dispatch(obj["doc_id"], obj["relevance"]))
 
@@ -113,31 +113,31 @@ class TC(tf.test.TestCase):
                     train_batch = train.make_one_shot_iterator().get_next()
                     valid_batch = valid.make_one_shot_iterator().get_next()
 
-                    with self.test_session() as sess:
-                        ref[0] = 0
-                        print("**Training**")
-                        try:
-                            while True:
-                                elements = sess.run(train_batch)
-                                ref[0] += len(elements[0])
-                                self.assertEqual(len(elements), 2)
-                                print(len(elements[0]), len(elements[0][0]))
-                                self.assertEqual(len(max(elements[0], key=len)), len(min(elements[0], key=len)))
-                        except tf.errors.OutOfRangeError:
-                            train_count = ref[0]
-                        ref[0] = 0
-                        print("**Validation**")
-                        try:
-                            while True:
-                                elements = sess.run(valid_batch)
-                                ref[0] += len(elements[0])
-                                self.assertEqual(len(elements), 2)
-                                print(len(elements[0]), len(elements[0][0]))
-                                self.assertEqual(len(max(elements[0], key=len)), len(min(elements[0], key=len)))
-                        except tf.errors.OutOfRangeError:
-                            valid_count = ref[0]
-                        print("Total # of data in train set:", train_count)
-                        print("Total # of data in valid set * 3:", valid_count * 3)
+        with self.test_session() as sess:
+            ref[0] = 0
+            print("**Training**")
+            try:
+                while True:
+                    elements = sess.run(train_batch)
+                    ref[0] += len(elements[0])
+                    self.assertEqual(len(elements), 2)
+                    print(len(elements[0]), len(elements[0][0]))
+                    self.assertEqual(len(max(elements[0], key=len)), len(min(elements[0], key=len)))
+            except tf.errors.OutOfRangeError:
+                train_count = ref[0]
+            ref[0] = 0
+            print("**Validation**")
+            try:
+                while True:
+                    elements = sess.run(valid_batch)
+                    ref[0] += len(elements[0])
+                    self.assertEqual(len(elements), 2)
+                    print(len(elements[0]), len(elements[0][0]))
+                    self.assertEqual(len(max(elements[0], key=len)), len(min(elements[0], key=len)))
+            except tf.errors.OutOfRangeError:
+                valid_count = ref[0]
+            print("Total # of data in train set:", train_count)
+            print("Total # of data in valid set:", valid_count)
 
 
 if __name__ == "__main__":
