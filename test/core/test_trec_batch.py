@@ -4,7 +4,7 @@ import numpy as np
 import threading
 import concurrent.futures
 from typing import *
-from .context import core, db, documents, trec
+from test.context import core, db, documents, trec
 
 
 class TC(tf.test.TestCase):

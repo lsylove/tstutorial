@@ -1,6 +1,6 @@
 import unittest
 import definitions
-from .context import trec
+from test.context import trec
 
 
 class TC(unittest.TestCase):

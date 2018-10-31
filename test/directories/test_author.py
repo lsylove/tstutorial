@@ -1,5 +1,5 @@
 import unittest
-from .context import directories
+from test.context import directories
 
 
 class TC(unittest.TestCase):

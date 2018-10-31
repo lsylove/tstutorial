@@ -1,5 +1,5 @@
 import unittest
-from .context import db, documents
+from test.context import db, documents
 
 
 class TC(unittest.TestCase):

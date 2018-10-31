@@ -1,6 +1,6 @@
 import unittest
 from definitions import EDRM_DIR
-from .context import db, directories, documents
+from test.context import db, directories, documents
 
 TEST_DIR = db.attachment_type.DIR.replace("data", "mock")
 

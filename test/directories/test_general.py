@@ -1,6 +1,6 @@
 import unittest
 from definitions import EDRM_DIR
-from .context import directories
+from test.context import directories
 
 
 class TC(unittest.TestCase):

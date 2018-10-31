@@ -2,7 +2,7 @@ import unittest
 import random
 import os
 from definitions import EDRM_DIR, TEMP_DIR
-from .context import documents, directories, trec, db
+from test.context import documents, directories, trec, db
 
 
 class TC(unittest.TestCase):

@@ -4,7 +4,7 @@ import numpy as np
 import os
 from typing import *
 from definitions import TEMP_DIR
-from .context import core
+from test.context import core
 
 
 class TC(tf.test.TestCase):

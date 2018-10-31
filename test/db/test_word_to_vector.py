@@ -1,6 +1,6 @@
 import unittest
 from numpy import squeeze
-from .context import db
+from test.context import db
 
 TEST_DIR = db.word_to_vector.DIR.replace("data", "mock")
 model_cache = None

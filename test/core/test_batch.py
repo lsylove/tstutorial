@@ -1,7 +1,7 @@
 import tensorflow as tf
 import numpy as np
 from typing import *
-from .context import core
+from test.context import core
 
 
 class TC(tf.test.TestCase):

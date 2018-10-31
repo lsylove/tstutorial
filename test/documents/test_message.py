@@ -2,7 +2,7 @@ import unittest
 import random
 import os
 from definitions import TEMP_DIR
-from .context import documents, trec, db
+from test.context import documents, trec, db
 
 
 class TC(unittest.TestCase):
