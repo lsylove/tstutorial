@@ -108,6 +108,11 @@ def mock_validation_with_seeds(req_id: int) -> None:
         log_dir = os.path.join(TEMP_DIR, "mvs_" + str(req_id))
         summary_writer = tf.summary.FileWriter(log_dir, graph=sess.graph)
 
+        accuracy_put = tf.placeholder(tf.float32)
+        accuracy_scalar = tf.summary.scalar("accuracy_", accuracy_put)
+        val_loss_put = tf.placeholder(tf.float32)
+        val_loss_scalar = tf.summary.scalar("validation_cost_", val_loss_put)
+
         sess.run(init_op)
         for i in range(epoch):
             print("Epoch #", i + 1)
@@ -119,7 +124,7 @@ def mock_validation_with_seeds(req_id: int) -> None:
                                                               keep_prob: 0.85})
                     summary_writer.add_summary(train_summary, sess.run(global_step))
                 except tf.errors.OutOfRangeError:
-                    if i % 20 == 0:
+                    if i % 2 == 0:
                         sess.run(val_init_op)
                         accuracies = []
                         losses = []
@@ -131,10 +136,12 @@ def mock_validation_with_seeds(req_id: int) -> None:
                             except tf.errors.OutOfRangeError:
                                 accuracy_mean = np.mean(np.array(accuracies).astype(np.float32))
                                 loss_mean = np.mean(np.array(losses).astype(np.float32))
-                                val_summary = tf.summary.scalar("accuracy", tf.constant(accuracy_mean))
-                                val_loss_summary = tf.summary.scalar("validation_cost", tf.constant(loss_mean))
-                                summary_writer.add_summary(sess.run(val_summary), sess.run(global_step))
-                                summary_writer.add_summary(sess.run(val_loss_summary), sess.run(global_step))
+                                summary_writer.add_summary(sess.run(accuracy_scalar,
+                                                                    feed_dict={accuracy_put: accuracy_mean}),
+                                                           sess.run(global_step))
+                                summary_writer.add_summary(sess.run(val_loss_scalar,
+                                                                    feed_dict={val_loss_put: loss_mean}),
+                                                           sess.run(global_step))
                                 break
                     break
 
